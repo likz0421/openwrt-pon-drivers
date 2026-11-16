@@ -25,7 +25,7 @@ endef
 define KernelPackage/airoha-en7572
   SUBMENU:=Network Devices
   TITLE:=Airoha EN7572 PON frontend
-  DEPENDS:=@(TARGET_airoha_an7581||TARGET_airoha_an7583) +kmod-airoha-pon-frontend
+  DEPENDS:=@(TARGET_airoha_an7581||TARGET_airoha_an7583) +kmod-airoha-pon-frontend +kmod-i2c-core
   FILES:=$(PKG_BUILD_DIR)/airoha-en7572.ko
   AUTOLOAD:=$(call AutoProbe,airoha-en7572)
 endef
@@ -45,7 +45,7 @@ endef
 define KernelPackage/airoha-paged-bosa
   SUBMENU:=Network Devices
   TITLE:=GN28L95 and UX3363 PON frontends
-  DEPENDS:=@TARGET_airoha_an7581 +kmod-airoha-pon-frontend
+  DEPENDS:=@TARGET_airoha_an7581 +kmod-airoha-pon-frontend +kmod-i2c-core
   FILES:=$(PKG_BUILD_DIR)/airoha-paged-bosa.ko
   AUTOLOAD:=$(call AutoProbe,airoha-paged-bosa)
 endef
@@ -57,7 +57,3 @@ endef
 define Build/Compile
 	$(KERNEL_MAKE) M="$(PKG_BUILD_DIR)" modules
 endef
-
-$(eval $(call KernelPackage,airoha-pon-frontend))
-$(eval $(call KernelPackage,airoha-en7572))
-$(eval $(call KernelPackage,airoha-paged-bosa))
