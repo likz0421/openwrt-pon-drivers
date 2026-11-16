@@ -57,3 +57,7 @@ endef
 define Build/Compile
 	$(KERNEL_MAKE) M="$(PKG_BUILD_DIR)" modules
 endef
+
+$(eval $(call KernelPackage,airoha-pon-frontend))
+$(eval $(call KernelPackage,airoha-en7572))
+$(eval $(call KernelPackage,airoha-paged-bosa))
